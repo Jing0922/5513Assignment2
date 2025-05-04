@@ -7,4 +7,6 @@ editor: visual
 
 # Introduction
 
-This is a demo for practicing Git and GitHub.
+This is a demo for practicing Git and GitHub. I hope you can learn something useful!
+This is a change in origin main.
+Have a nice day!
