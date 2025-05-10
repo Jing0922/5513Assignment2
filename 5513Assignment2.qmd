@@ -2,6 +2,10 @@
 title: "5513Assignment2- Git & GitHub Beginner’s Guide with RStudio and CLI"
 author: Jingyi Wang 35678925
 format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
   pdf:
     documentclass: article
     number-sections: false
@@ -10,13 +14,6 @@ format:
     mainfont: Times New Roman
     geometry: margin=1in
     keep-tex: true
-  html:
-    theme: cosmo
-    toc: true
-    toc-depth: 3
-  
-    
-  
 editor: visual
 ---
 
@@ -361,6 +358,7 @@ Now we try to combine the two branches:
 ``` bash
 git merge testbranch
 ```
+
 ⚠️ **Critical Check:**
 
 You *must* be on the `main` branch before merging. If you accidentally run `git merge main` while on `testbranch`, the merge direction will be reversed!
@@ -451,7 +449,7 @@ Now that testbranch has been successfully merged into main, we can safely remove
 
 ⚠️ **Critical Check:**
 
-You can not delete your currently active branch, which means you *can not* be on the `testbranch`. 
+You can not delete your currently active branch, which means you *can not* be on the `testbranch`.
 
 Delete the branch locally:
 
@@ -569,7 +567,7 @@ This command unstages changes but keeps them in working directory. If you verify
 
 **Hard Reset(⚠️ Dangerous!)**
 
-``` bash 
+``` bash
 git reset --hard HEAD~1
 ```
 
