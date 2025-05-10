@@ -1,1 +1,1 @@
-{"chunk_definitions":[],"doc_write_time":1746191386}
+{"chunk_definitions":[{"row":36,"row_count":1,"visible":true,"expansion_state":0,"options":{"engine":"r","label":"fig-scatterplot","echo":false,"fig.cap":"Normalised mileage of cars. Positive values represent above average mileage, negative values indicate negative mileage","dev":"png"},"document_id":"B4F7873C","chunk_id":"cpsqa3xqeqjha","chunk_label":"fig-scatterplot"}],"doc_write_time":1746339955,"chunk_rendered_width":655}

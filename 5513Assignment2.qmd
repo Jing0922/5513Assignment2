@@ -1,0 +1,596 @@
+---
+title: "5513Assignment2- Git & GitHub Beginner’s Guide with RStudio and CLI"
+author: Jingyi Wang 35678925
+format:
+  pdf:
+    documentclass: article
+    number-sections: false
+    toc: true
+    fontsize: 11pt
+    mainfont: Times New Roman
+    geometry: margin=1in
+    keep-tex: true
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+  
+    
+  
+editor: visual
+---
+
+# Introduction
+
+This guide demonstrates how to efficiently use Git, GitHub, and the command line interface (CLI) for version control and collaboration. By following these steps, you'll master Git for Quarto projects in RStudio.
+
+# Step 1: Create a new RStudio Project and a simple Quarto file
+
+First, open RStudio and create a new project named `5513Assignment2` (@fig-R_project).
+
+```{r}
+#| label: fig-R_project
+#| fig-cap: "Create a new R Project"
+#| echo: false
+knitr::include_graphics("figure/R_project.png")
+```
+
+Inside the project, make a new Quarto document called `example.qmd` (@fig-ex_qmd). Add some simple content (@fig-wri_ex_qmd) and click the Render button to knit it into an HTML file (@fig-ex_html).
+
+```{r}
+#| label: fig-ex_qmd
+#| fig-cap: "Create a new Quarto Document"
+#| echo: false
+knitr::include_graphics("figure/ex_qmd.png")
+```
+
+```{r}
+#| label: fig-wri_ex_qmd
+#| fig-cap: "Write some content"
+#| echo: false
+knitr::include_graphics("figure/wri_ex_qmd.png")
+```
+
+```{r}
+#| label: fig-ex_html
+#| fig-cap: "Knit and Create a HTML File"
+#| echo: false
+knitr::include_graphics("figure/ex_html.png")
+```
+
+After rendering, your project folder should now contain both the `.qmd` file and the `.html` output (@fig-step1_final).
+
+```{r}
+#| label: fig-step1_final
+#| fig-cap: "Step1 Final"
+#| echo: false
+knitr::include_graphics("figure/step1_final.png")
+```
+
+🧠 **Reflection:**
+
+This step is important because it sets up your working space. It connects your folder to Git so it can track changes and link to GitHub later.
+
+# Step 2: Initialize the folder as a Git repository and push to GitHub
+
+In RStudio, click the “Terminal” tab at the bottom panel, and run the following commands:
+
+``` bash
+git init
+git add .
+git commit -m "Initial commit with example.qmd and knitted HTML"
+```
+
+Then, on GitHub, create a new repository (@fig-new_repo) and copy the SSH address(@fig-SSH).
+
+```{r}
+#| label: fig-new_repo
+#| fig-cap: " Create a New Repository on GitHub"
+#| echo: false
+knitr::include_graphics("figure/new_repo.png")
+```
+
+```{r}
+#| label: fig-SSH
+#| fig-cap: "Copy the SSH"
+#| echo: false
+knitr::include_graphics("figure/SSH.png")
+```
+
+Then link your local repo to GitHub and push it:
+
+``` bash
+git remote add origin git\@github.com:Jing0922/5513Assignment2.git
+git branch -M main
+git push -u origin main
+```
+
+```{r}
+#| label: fig-con_ter
+#| fig-cap: "Connect Local Repo to GitHub in Terminal"
+#| echo: false
+knitr::include_graphics("figure/con_ter.png")
+```
+
+```{r}
+#| label: fig-connect_local_repo
+#| fig-cap: "Connect Local Repo to GitHub"
+#| echo: false
+knitr::include_graphics("figure/connect_local_repo.png")
+```
+
+🧠 **What this step does:**
+
+Now your local project is connected to GitHub. You can store your work online and work with others more easily.
+
+# Step 3.1: Create and push a new branch testbranch
+
+There are two different ways to create a new branch and move the HEAD to the new branch:
+
+1.  The first method is:
+
+``` bash
+git branch testbranch
+git switch testbranch
+```
+
+2.  Another is:
+
+``` bash
+git switch -c testbranch
+```
+
+After any of the above steps,you can check all local branches, use:
+
+``` bash
+git branch
+```
+
+You can see there are two branches locally(@fig-create_branch).
+
+```{r}
+#| label: fig-create_branch
+#| fig-cap: "Create testbranch Locally"
+#| echo: false
+knitr::include_graphics("figure/create_branch.png")
+```
+
+Now open `example.qmd`, add a small change (adding a new sentence on line 11, like @fig-edit_testbranch_qmd), and save it.
+
+```{r}
+#| label: fig-edit_testbranch_qmd
+#| fig-cap: "Edit example.qmd in testbranch"
+#| echo: false
+knitr::include_graphics("figure/edit_testbranch_qmd.png")
+```
+
+Then run these commands:
+
+``` bash
+git add example.qmd
+git commit -m "Edit example.qmd in testbranch"
+git push origin testbranch
+```
+
+The result is shown in @fig-git_push_testbranch.
+
+```{r}
+#| label: fig-git_push_testbranch
+#| fig-cap: "Add, Commit and Push example.qmd in testbranch"
+#| echo: false
+knitr::include_graphics("figure/git_push_testbranch.png")
+```
+
+🧠 **Why use branches?**
+
+Branches let you test new ideas without changing your main files. This keeps your main project safe.
+
+# Step 3.2: create a folder called data
+
+Now still in `testbranch`, we want to create a new folder and add the data from Assignment 1 to it(@fig-data). In the terminal, you can use this command to make a folder:
+
+``` bash
+mkdir data
+```
+
+To copy the data file, you have two options:
+
+1.  Using Git bash, may not always work:
+
+``` bash
+cp "/c/Users/10354/5513/etc5513-assignment-1-Jing0922/Data/Meat_con.csv" "./data/"
+```
+
+2.  Safer way: Just manually copy the file into the data folder using File Explorer.
+
+```{r}
+#| label: fig-data
+#| fig-cap: "Create a New Folder and Copy the Data"
+#| echo: false
+knitr::include_graphics("figure/data.png")
+```
+
+Now add and commit the changes:
+
+``` bash
+git add data/
+git commit -m "Add data folder with assignment 1 data"
+```
+
+The final result is shown in @fig-data_create_copy_commit.
+
+```{r}
+#| label: fig-data_create_copy_commit
+#| fig-cap: "Add and Commit the Changes"
+#| echo: false
+knitr::include_graphics("figure/data_create_copy_commit.png")
+```
+
+🧠 **What did we do?**
+
+We saved useful data in the repo and tracked it with Git.
+
+# Step 4: Amend the previous commit
+
+Sometimes we forget to include something in the last commit. We can fix that with `--amend`.
+
+First, check the commit history:
+
+``` bash
+git log --oneline
+```
+
+You will get three commits now(@fig-log_his_1).
+
+```{r}
+#| label: fig-log_his_1
+#| fig-cap: "Check the Commit History"
+#| echo: false
+knitr::include_graphics("figure/log_his_1.png")
+```
+
+Then:
+
+``` bash
+git commit --amend
+```
+
+This will open the Vim editor (@fig-Vim_editor) showing the last commit message.
+
+💡 **Vim Tip**: If you're new to Vim, remember:
+
+-   Press <kbd>i</kbd> to enter Insert mode (cursor starts blinking)
+-   Modify the message as needed
+-   Press <kbd>Esc</kbd> to return to Command mode
+-   Type :wq then press <kbd>Enter</kbd> to: write (save) + quit (exit Vim)
+
+```{r}
+#| label: fig-Vim_editor
+#| fig-cap: "Vim Editor"
+#| echo: false
+knitr::include_graphics("figure/Vim_editor.png")
+```
+
+```{r}
+#| label: fig-amend
+#| fig-cap: "Amend the Last Commit Message"
+#| echo: false
+knitr::include_graphics("figure/amend.png")
+```
+
+After editing, run:
+
+``` bash
+git push origin testbranch --force
+```
+
+Now you check the commit history again:
+
+``` bash
+git log --oneline
+```
+
+You can see that the last commit has been modified(@fig-log_his_2).
+
+```{r}
+#| label: fig-log_his_2
+#| fig-cap: "Check the Commit History after Amending"
+#| echo: false
+knitr::include_graphics("figure/log_his_2.png")
+```
+
+🧠 **Why use --amend?**
+
+It lets us fix the last commit instead of making a new one.
+
+| Command              | Use Case                        | Safety |
+|----------------------|---------------------------------|--------|
+| `git commit --amend` | Edit the **most recent commit** | Medium |
+| `git reset`          | Rewind to **any past commit**   | High   |
+
+🧠 **Why use --force?**
+
+Because the history changed, GitHub needs a forced update to accept it.
+
+⚠️ **Warning:**
+
+Amending rewrites Git history. After `amend`, you must use `git push -f`. This is **dangerous** if others are working on the same branch! Always check with your team first.
+
+# Step 5: Switch back to the main branch and cause a merge conflict
+
+Now we go back to the main branch:
+
+``` bash
+git checkout main
+```
+
+Notice that the changes of `example.qmd` made in `testbranch` (the line 11 modification shown in @fig-edit_testbranch_qmd) are now absent. **Don't be worried!** This is expected behavior when switching branches.
+
+Now, we deliberately create a conflict. Open `example.qmd` and edit the same line 11 (but with different content than in `testbranch`). And add new content to other lines (as shown in @fig-edit_main_qmd). Save it.
+
+```{r}
+#| label: fig-edit_main_qmd
+#| fig-cap: "Edit example.qmd in main"
+#| echo: false
+knitr::include_graphics("figure/edit_main_qmd.png")
+```
+
+Then run:
+
+``` bash
+git add example.qmd
+git commit -m "Conflicting change in main branch"
+git push origin main
+```
+
+```{r}
+#| label: fig-git_push_main
+#| fig-cap: "Add, Commit and Push example.qmd in main"
+#| echo: false
+knitr::include_graphics("figure/git_push_main.png")
+```
+
+🧠 **Why do this?**
+
+We’re preparing for a merge conflict by changing the same line in two branches.
+
+# Step 6: Merge testbranch into main and resolve conflict
+
+Now we try to combine the two branches:
+
+``` bash
+git merge testbranch
+```
+⚠️ **Critical Check:**
+
+You *must* be on the `main` branch before merging. If you accidentally run `git merge main` while on `testbranch`, the merge direction will be reversed!
+
+A conflict will appear in `example.qmd`. It looks like @fig-merge_conflict. There are a lot of markers, such as \<\<\<\<\<\<\<, ======= and \>\>\>\>\>\>\>.
+
+```{r}
+#| label: fig-merge_conflict
+#| fig-cap: "A Conflict when Combine Two Branch"
+#| echo: false
+knitr::include_graphics("figure/merge_conflict.png")
+```
+
+Open the file and manually fix the content. You can keep both lines, delete one, or rewrite(@fig-resolve_conflict). Save it.
+
+```{r}
+#| label: fig-resolve_conflict
+#| fig-cap: "Resolve Conflict"
+#| echo: false
+knitr::include_graphics("figure/resolve_conflict.png")
+```
+
+Then:
+
+``` bash
+git add example.qmd
+git commit -m "Resolve merge conflict"
+git push origin main
+```
+
+To check status:
+
+``` bash
+git status
+```
+
+The result is @fig-after_merge_local. In GitHub, the `example.qmd` looks like @fig-after_merge_qmd.
+
+```{r}
+#| label: fig-after_merge_local
+#| fig-cap: "The Status after Resolving Conflict Locally"
+#| echo: false
+knitr::include_graphics("figure/after_merge_local.png")
+```
+
+```{r}
+#| label: fig-after_merge_qmd
+#| fig-cap: "The example.qmd after Resolving Conflict in GitHub"
+#| echo: false
+knitr::include_graphics("figure/after_merge_qmd.png")
+```
+
+🧠 **Why do conflicts happen?**
+
+Conflicts happen when both branches edit the same lines. Git needs your help to resolve it.
+
+🧠 **Why we do this:**
+
+Merging brings together updates from different branches. It’s a key part of collaboration and ensures everyone's work fits together.
+
+# Step 7: Tag the commit as version 1.0
+
+Now we want to mark the current commit as a version.
+
+Use this command to create an annotated tag:
+
+``` bash
+git tag -a v1.0 -m "Release version 1.0"
+git push origin v1.0
+```
+
+This creates a tag named "v1.0", which will appear on GitHub(@fig-tag_on_github).
+
+```{r}
+#| label: fig-tag_on_github
+#| fig-cap: "Create an Annotated Tag"
+#| echo: false
+knitr::include_graphics("figure/tag_on_github.png")
+```
+
+🧠 **Reminder:**
+
+Tags are like bookmarks. They help you find key points in your project history. Annotated tags (-a) store extra metadata including who created them and when.
+
+# Step 8: Delete the testbranch
+
+Now that testbranch has been successfully merged into main, we can safely remove it to keep our repository organized.
+
+⚠️ **Critical Check:**
+
+You can not delete your currently active branch, which means you *can not* be on the `testbranch`. 
+
+Delete the branch locally:
+
+``` bash
+git branch -d testbranch 
+```
+
+Check branch, use:
+
+``` bash
+git branch
+```
+
+Delete the branch from GitHub (remote):
+
+``` bash
+git push origin --delete testbranch
+```
+
+Now, only the main branch will be left locally(@fig-delete_branch_local) and in your GitHub repo(@fig-delete_branch_github).
+
+```{r}
+#| label: fig-delete_branch_local
+#| fig-cap: "Delete the Branch Locally"
+#| echo: false
+knitr::include_graphics("figure/delete_branch_local.png")
+```
+
+```{r}
+#| label: fig-delete_branch_github
+#| fig-cap: "Delete the Branch from GitHub"
+#| echo: false
+knitr::include_graphics("figure/delete_branch_github.png")
+```
+
+🧠 **Why delete branches?**
+
+Deleting old branches keeps your project tidy and organized. Just remember: Git won’t let you delete the branch you’re currently using.
+
+# Step 9: View the commit log
+
+You can check the history of your changes by using:
+
+``` bash
+git log --oneline
+```
+
+This shows a short list of all your commits with commit IDs and messages(@fig-log_his_3).
+
+```{r}
+#| label: fig-log_his_3
+#| fig-cap: "Check the Commit History"
+#| echo: false
+knitr::include_graphics("figure/log_his_3.png")
+```
+
+🧠 **Why do this?**
+
+Viewing the commit history shows who made changes, when, and what was done. It’s especially helpful for tracking team work or reviewing your progress.
+
+# Step 10: Add a plot and undo a commit
+
+Add a new section to `example.qmd` and draw a plot, like @fig-add_plot.
+
+```{r}
+#| label: fig-add_plot
+#| fig-cap: "Add the Plot"
+#| echo: false
+knitr::include_graphics("figure/add_plot.png")
+```
+
+Then add and commit it:
+
+``` bash
+git add example.qmd
+git commit -m "Add simple plot"
+```
+
+To undo the most recent commit but keep all changes in your working directory, use a **soft reset**:
+
+``` bash
+git reset --soft HEAD~1
+```
+
+This command removes the last commit but keeps the changes in the staging area.
+
+To verify the changes:
+
+``` bash
+git status
+```
+
+You can see that all previously committed changes now appear as "Changes to be committed" (shown in green)(@fig-reset_soft_status)
+
+```{r}
+#| label: fig-reset_soft_status
+#| fig-cap: "The Status after Soft Reset"
+#| echo: false
+knitr::include_graphics("figure/reset_soft_status.png")
+```
+
+🧠 **Why do this?**
+
+Sometimes we want to fix a commit message or add more things before pushing it. Soft reset is useful when you want to change the commit message or add more to the commit.
+
+**Extended Knowledge: Other Reset Modes**
+
+**Mixed Reset(Default)**
+
+``` bash
+git reset HEAD~1
+```
+
+This command unstages changes but keeps them in working directory. If you verify with git status, changes show as unstaged in red.
+
+**Hard Reset(⚠️ Dangerous!)**
+
+``` bash 
+git reset --hard HEAD~1
+```
+
+This command completely discards the commit and **all** local changes. No recovery unless you used git reflog.
+
+🧠 **Be careful:**
+
+1.  Soft reset (--soft) → Keeps changes staged.
+2.  Mixed reset (--mixed) → Keeps changes but unstages them.
+3.  Hard reset (--hard) → Deletes everything in the commit.
+
+# Tips
+
+There are some tips for you:
+
+-   Use clear commit messages like “Add plot section to qmd” or “Fix conflict between branches”.
+
+-   Keep commits small and focused.
+
+-   Always use branches when testing or adding new features.
+
+# Conclusion
+
+This guide gives you a strong start with Git, GitHub, RStudio and CLI. By learning these steps, you can manage your work more clearly and work better with others.
